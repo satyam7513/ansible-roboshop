@@ -1,11 +1,11 @@
-- name: configuraion to the user
+- name: configure user component
   hosts: user
-  become: true
+  become: yes
   tasks: 
      - name: Disbale default nodejs
        ansible.builtin.command: dnf module disable nodejs -y
 
-     - name: Enable nodejs
+     - name: Enable nodejs:20
        ansible.builtin.command: dnf module enable nodejs:20 -y
 
      - name: install nodejs
@@ -30,7 +30,7 @@
            url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
            dest: /tmp/user.zip
 
-     - name: extract catalogue code
+     - name: extract user code
        ansible.builtin.unarchive:
             src: /tmp/user.zip
             dest: /app
@@ -51,9 +51,9 @@
 
      - name: Enable and satart user
        ansible.builtin.service:
-               name: user
-               service: started
-               enabled: yes
+              name: user
+              service: started
+              enabled: yes
                
        
 

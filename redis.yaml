@@ -1,6 +1,6 @@
-- name: redis configuraion
+- name: install redis configuraion
   hosts: redis
-  become: true
+  become: yes
   tasks:
     - name: Disable default redis
       ansible.builtin.command: dnf module disable redis -y
@@ -19,13 +19,14 @@
             regexp: '127.0.0.1'
             replace: '0.0.0.0'
 
-    - name: update protected mode
-       ansible.builtin.lineinfile:
+    - name: Disable protected mode
+      ansible.builtin.lineinfile:
           path: /etc/redis/redis.conf
-          line: protected-mode
-          create: no 
+          regexp: 'protected-mode'
+          line: protected-mode no 
+          
 
-    - name: Start & Enable Redis Service
+    - name: Enable start Redis Service
       ansible.builtin.service:
            name: Redis
            service: started
