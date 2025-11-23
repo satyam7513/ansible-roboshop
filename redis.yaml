@@ -2,7 +2,7 @@
   hosts: redis
   become: yes
   tasks:
-    - name: Disable default redis
+    - name: Disable default redis module
       ansible.builtin.command: dnf module disable redis -y
 
     - name: Enable redis
@@ -26,7 +26,7 @@
           line: protected-mode no 
           
 
-    - name: Enable start Redis Service
+    - name: Enable and start Redis Service
       ansible.builtin.service:
            name: Redis
            service: started

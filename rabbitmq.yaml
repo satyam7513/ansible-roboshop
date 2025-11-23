@@ -11,7 +11,7 @@
     - name: install rabbitmq-server
       ansible.builtin.dnf:
         name: rabbitmq-server
-        state: 
+        state: installed 
         
     - name: satrt & enable rabbitmq server
       ansible.builtin.service:
