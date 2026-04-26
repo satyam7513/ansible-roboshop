@@ -17,7 +17,7 @@
   - name: create app direcotry
     ansible.builtin.file:
        path: /app
-       state: direcotry
+       state: directory
 
   - name: create roboshop system user
     ansible.builtin.user:
@@ -35,4 +35,3 @@
     ansible.builtin.unarchive:
        src: /tmp/catalogue.zip
        dest: /app
-       
